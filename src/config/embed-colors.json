@@ -1,0 +1,6 @@
+{
+    "SUCCESS": "0x00ff00",
+    "FAIL": "0xff0000",
+    "WARN": "0xffaa00",
+    "INFO": "0x0099ff"
+}

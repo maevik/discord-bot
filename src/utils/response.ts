@@ -1,9 +1,10 @@
-import { ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
-import { Logger } from "./logger";
 import type { ColorResolvable, InteractionReplyOptions } from "discord.js";
-import type { EmbedTemplateOptions } from "../types/embed";
+import type { EmbedTemplateOptions } from "@/types/embed";
 
-import embedColor from "../config/embed-colors.json";
+import { ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
+import { Logger } from "@/utils/logger";
+
+import embedColor from "@/configs/embed-colors.json";
 
 export class Response {
     constructor(private interaction: ChatInputCommandInteraction) { }

@@ -1,11 +1,12 @@
 import { Client, Events, GatewayIntentBits, REST, Routes } from "discord.js";
-import { Logger } from "../util/logger";
-import { slashCommands } from "../commands";
+import { Logger } from "@/utils/logger";
+import commands from "@/commands/index";
 
 export class Bot {
     constructor(private botToken: string, private clientId: string) { }
 
     async start(): Promise<void> {
+        Logger.info("Discord Bot Initializing");
         const client = new Client({
             intents: [
                 GatewayIntentBits.Guilds,
@@ -25,15 +26,26 @@ export class Bot {
         }
     }
 
-    private async onReady(): Promise<void> { }
-    private async onJoin(): Promise<void> { }
-    private async onLeave(): Promise<void> { }
-    private async onMessage(): Promise<void> { }
+    private async onReady(): Promise<void> {
+        Logger.info("Discord Bot Initialized");
+    }
+
+    private async onJoin(): Promise<void> {
+        // implementation needed
+    }
+
+    private async onLeave(): Promise<void> {
+        // implementation needed
+    }
+
+    private async onMessage(): Promise<void> {
+        // implementation needed
+    }
 
     private async onInteract(interaction: any): Promise<void> {
         if (!interaction.isChatInputCommand()) return;
 
-        const command = slashCommands.find(cmd => cmd.name === interaction.commandName);
+        const command = commands.find(cmd => cmd.name === interaction.commandName);
         if (!command) return;
 
         try {
@@ -58,7 +70,7 @@ export class Bot {
         const rest = new REST({ version: "10" }).setToken(this.botToken);
 
         try {
-            await rest.put(Routes.applicationCommands(this.clientId), { body: slashCommands });
+            await rest.put(Routes.applicationCommands(this.clientId), { body: commands });
         } catch (error) {
             Logger.error(error);
         }

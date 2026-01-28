@@ -7,8 +7,5 @@ export interface PrefixCommand {
 }
 
 export interface SlashCommand extends ChatInputApplicationCommandData {
-    // already in ChatInputApplicationCommandData
-    // name: string,
-    // description: string,
     execute: (interaction: ChatInputCommandInteraction) => Promise<void>;
 }

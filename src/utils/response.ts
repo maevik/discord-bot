@@ -1,4 +1,4 @@
-import type { ColorResolvable, InteractionReplyOptions } from "discord.js";
+import type { ColorResolvable, InteractionReplyOptions, ModalBuilder } from "discord.js";
 import type { EmbedTemplateOptions } from "@/types/embed";
 
 import { ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
@@ -56,6 +56,16 @@ export class Response {
     public async deleteReply(): Promise<void> {
         try {
             await this.interaction.deleteReply();
+        } catch (error) {
+            Logger.error(error);
+        }
+    }
+
+    public async showModal(modal: ModalBuilder): Promise<void> {
+        try {
+            // modal CANNOT be shown if interaction is already deferred or replied to.
+            if (this.interaction.deferred || this.interaction.replied) return;
+            await this.interaction.showModal(modal);
         } catch (error) {
             Logger.error(error);
         }

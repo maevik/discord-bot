@@ -1,6 +1,7 @@
 import type { SlashCommand } from "@/types/command";
 
 import { pingCommand, todoCommand } from "@/commands/default";
+import { bugReportCommand, userReportCommand } from "@/commands/report";
 
 const commands: SlashCommand[] = [
     {
@@ -9,10 +10,20 @@ const commands: SlashCommand[] = [
         execute: pingCommand,
     },
     {
-        name: "report",
-        description: "Report specific user inside a discord server to mod's",
+        name: "ban",
+        description: "Ban specific user inside a discord server",
         execute: todoCommand,
-    }
+    },
+    {
+        name: "report-user",
+        description: "Submit a specific user report inside a discord server to mod's",
+        execute: userReportCommand,
+    },
+    {
+        name: "report-bug",
+        description: "Submit a specific bug report for the product's",
+        execute: bugReportCommand,
+    },
 ];
 
 export default commands;

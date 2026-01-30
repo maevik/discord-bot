@@ -2,7 +2,7 @@ import type { ChatInputCommandInteraction, ModalActionRowComponent, ModalActionR
 import { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } from "discord.js";
 import { Response } from "@/utils/response";
 
-export async function userReportCommand(interaction: ChatInputCommandInteraction): Promise<void> {    
+async function userReportCommand(interaction: ChatInputCommandInteraction): Promise<void> {    
     const target = new TextInputBuilder({ 
         custom_id: "target_input",
         label: "User ID or Tag",
@@ -37,7 +37,7 @@ export async function userReportCommand(interaction: ChatInputCommandInteraction
     await response.showModal(modal);
 }
 
-export async function bugReportCommand(interaction: ChatInputCommandInteraction): Promise<void> {
+async function bugReportCommand(interaction: ChatInputCommandInteraction): Promise<void> {
     const feature = new TextInputBuilder({
         custom_id: "feature_input",
         label: "Affected Feature/System",
@@ -71,3 +71,5 @@ export async function bugReportCommand(interaction: ChatInputCommandInteraction)
     const response = new Response(interaction);
     await response.showModal(modal);
 }
+
+export { userReportCommand, bugReportCommand }

@@ -1,6 +1,7 @@
 import { ApplicationCommandOptionType, PermissionFlagsBits } from "discord.js";
 import { pingCommand, todoCommand } from "@/commands/default";
 import { bugReportCommand, userReportCommand } from "@/commands/report";
+import { kickUserCommand } from "@/commands/kick";
 import { banUserCommand } from "@/commands/ban";
 
 import type { SlashCommand } from "@/types/command";
@@ -11,6 +12,18 @@ const commands: SlashCommand[] = [
         description: "Check if the bot is online and get latency info",
         defaultMemberPermissions: PermissionFlagsBits.Administrator,
         execute: pingCommand,
+    },
+    {
+        name: "kick-user",
+        description: "Kick specific user inside a discord server",
+        defaultMemberPermissions: PermissionFlagsBits.Administrator,
+        execute: kickUserCommand,
+    },
+    {
+        name: "kick-player",
+        description: "Kick specific player inside a game server",
+        defaultMemberPermissions: PermissionFlagsBits.Administrator,
+        execute: todoCommand,
     },
     {
         name: "ban-user",
